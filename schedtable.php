@@ -40,6 +40,10 @@ session_start();
     #emp_id{
         width: 80px;
     }
+    .save{
+        padding: 0 0;
+
+    }
 </style>
 <script type="text/javascript">
 	function del()
@@ -91,18 +95,25 @@ if (isset($_SESSION["count"])){
                 <td>Unique Code</td>
                 <td>Status</td>
             </tr>
+            <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
+
+
             <?php
             include 'connect.php';
 
             $sql ="select * from tbl_sched order by id";
             $res = mysqli_query($con, $sql);
+            $_SESSION["result_set"] = $res;
             while($row= mysqli_fetch_array($res))
             {
             ?><!--end of first php -->
             <tr>
                 <td align="center"><a onclick="return Del()" href="delsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
 <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
-                <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><span class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>></span></a></td>
+                <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
+                        echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
+
+                        ?></a></td>
                 <td><?php echo $row['id']; ?></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="room_id" id="room_id" value=<?php echo $row['room_id']; ?> <?php echo ($_SESSION["count"]<=1) ? "readonly" : ""?>> </td>
                 <td><input class="table_cell <?php echo 'cell'.$row['id']?>" name="emp_id" id="emp_id" value=<?php echo $row['emp_id']; ?>  <?php echo ($_SESSION["count"]<=1) ? "readonly" : ""?>></td>
@@ -114,6 +125,7 @@ if (isset($_SESSION["count"])){
             </tr>
 
             <?php //open of second php
+
             }//close of while
 
 
@@ -122,6 +134,7 @@ if (isset($_SESSION["count"])){
 
 
             ?><!-- close of second php -->
+            </form>
         </table>
         <a href="addsched.php">add new schedule</a></br>
         <font size="4" face="arial"  color="blue">
