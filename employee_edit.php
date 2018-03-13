@@ -11,7 +11,7 @@ echo "seesion startuuu";
 
 if (isset($_POST["save_button"])){
     $_SESSION["previous"] = $_SESSION["selected"];
-    $_SESSION["selected"]=filter_input(INPUT_POST,"reserv_id");
+    $_SESSION["selected"]=filter_input(INPUT_POST,"emp_id");
 }
 elseif($_SESSION["selected"]=="none"){
     $_SESSION["selected"]=$_GET["SID"];
@@ -27,26 +27,21 @@ else{
 if($_SESSION["previous"] == $_SESSION["selected"]){
     $_SESSION["count"] += 1;
     if($_SESSION["count"] == 3) {
-        echo " if 1 Selected=".$_SESSION["selected"]. " ". "Previous=". $_SESSION["previous"];
         echo $_SESSION["selected"];
 
-        $id = $_SESSION["selected"];
-        $r_id = $_POST['room_id'];
-        $e_id = $_POST['emp_id'];
-        $ti = $_POST['time_in'];
-        $to = $_POST['time_out'];
-        $date = $_POST['date'];
-        $unique_code = $_POST['unique'];
-        if (isset($_POST['status'])){
-            $room_status = true;
-        }else{
-            $room_status=false;
-        }
+        $emp_id = $_SESSION["selected"];
+//        $emp_id = $_POST['emp_id'];
+        $emp_ln = $_POST['emp_ln'];
+        $emp_fn = $_POST['emp_fn'];
+        $emp_add = $_POST['emp_add'];
+        $emp_age = $_POST['emp_age'];
+        $emp_dept = $_POST['emp_dept'];
+        $emp_email = $_POST['emp_email'];
+        $gender = $_POST['gender'];
+        $cnumber = $_POST['emp_cnumber'];
 
-
-
-
-        $SQL = "UPDATE tbl_sched SET room_id='$r_id',emp_id='$e_id',time_in='$ti',time_out='$to',date='$date',u_code='$unique_code',Status='$room_status' WHERE id='$id'";
+        $SQL = "UPDATE employee SET Employee_ID='$emp_id',Emp_FN='$emp_fn',Emp_LN='$emp_ln',Emp_Address='$emp_add',
+Emp_Age='$emp_age',Emp_Department='$emp_dept',Emp_Gender='$gender',Emp_CNumber = '$cnumber' WHERE Employee_ID='$emp_id'";
         echo $SQL;
         mysqli_query($con,$SQL)or die('Error:'.mysqli_error());
 
@@ -58,26 +53,23 @@ if($_SESSION["previous"] == $_SESSION["selected"]){
         $_SESSION["count"] = 1;
         $_SESSION["selected"] = "none";
 //save
-        header('location:schedtable.php');
+        header('location:employees.php');
     }
     else if ($_SESSION["count"] == 2){
-        echo " if 2 Selected=".$_SESSION["selected"]. " ". "Previous=". $_SESSION["previous"];
 //set editable
         $_SESSION["classname"] = '.cell'.$_SESSION["selected"];
-        header('location:schedtable.php');
+        header('location:employees.php');
     }
     else{
-        echo "if 3 Selected=".$_SESSION["selected"]. " ". "Previous=". $_SESSION["previous"];
-        header('location:schedtable.php');
+        header('location:employees.php');
     }
 
 }else{
-    echo "Selected=".$_SESSION["selected"]. " ". "Previous=". $_SESSION["previous"];
     $_SESSION["count"] = 2;
     $_SESSION["previous"] = $_SESSION["selected"];
     $_SESSION["selected"] = $_GET["SID"];
     $_SESSION["classname"] = '.cell'.$_SESSION["selected"];
-    header('location:schedtable.php');
+    header('location:employees.php');
 }
 
 
