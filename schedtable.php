@@ -97,12 +97,8 @@ if (isset($_SESSION["count"])){
                 <td>Unique Code</td>
                 <td>Status</td>
             </tr>
-
-
-
             <?php
             include 'connect.php';
-
             $sql ="select * from tbl_sched order by id";
             $res = mysqli_query($con, $sql);
             $_SESSION["result_set"] = $res;
@@ -111,7 +107,6 @@ if (isset($_SESSION["count"])){
             ?><!--end of first php -->
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
             <tr>
-
                 <td align="center"><a onclick="return Del()" href="delsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
 <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
                 <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
@@ -126,22 +121,15 @@ if (isset($_SESSION["count"])){
                 <td><input type="date" class="table_cell <?php echo 'cell'.$row['id']?>" name="date" value=<?php echo $row['date']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
                 <td><input type="text" class="table_cell <?php echo 'cell'.$row['id']?>" name="unique" id="unique" value=<?php echo $row['u_code']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
                 <td><input type="checkbox" class="table_cell <?php echo 'cell'.$row['id']?>" name="status" <?php echo ($row['Status'] == TRUE) ? "checked" : "";?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "disabled = \"disabled\"" : ""?>></td>
-
             </tr>
             </form>
             <?php //open of second php
-
             }//close of while
-
-
             mysqli_close($con);
-
-
-
             ?><!-- close of second php -->
-
         </table>
-        <a href="addsched.php">add new schedule</a></br>
+        <button href="addsched.php" class="btn btn-primary">Add New Schedule</button><br>
+
         <font size="4" face="arial"  color="blue">
             <?php
             include 'connect.php';
@@ -149,7 +137,7 @@ if (isset($_SESSION["count"])){
             $result = mysqli_query($con,"select * from tbl_sched");
             $rows = mysqli_num_rows($result);
             echo "<br>";
-            echo "there are " . $rows . " record(s) in the table. ";
+            echo "There are " . $rows . " record(s) in the table. ";
             mysqli_close($con);
             ?>
         </font>
