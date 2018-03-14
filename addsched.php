@@ -1,6 +1,7 @@
 <html><head><title>Add New Schedule</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap.css" type="text/css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
 
 <style>

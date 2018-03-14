@@ -161,7 +161,8 @@ session_start();
         mysqli_close($con);
         ?><!-- close of second php -->
     </TABLE>
-    <button class="btn btn-primary" href="addemp.php">Add another employee</button>
+    <a href="addemp.php"><button class="btn btn-primary">Add another employee</button></a>
+
     <font size="4" face="arial"  color="blue">
         <?php
         include 'connect.php';

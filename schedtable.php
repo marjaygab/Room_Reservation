@@ -3,8 +3,10 @@ session_start();
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap.css" type="text/css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
+<!--    <link rel="stylesheet" href="bootstrap.min.css" type="text/css">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
 <title>list of schedules</title>
 <style>
@@ -128,7 +130,7 @@ if (isset($_SESSION["count"])){
             mysqli_close($con);
             ?><!-- close of second php -->
         </table>
-        <button href="addsched.php" class="btn btn-primary">Add New Schedule</button><br>
+    <a href="addsched.php"> <button class="btn btn-primary">Add New Schedule</button></a><br>
 
         <font size="4" face="arial"  color="blue">
             <?php
