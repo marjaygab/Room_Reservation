@@ -101,7 +101,7 @@ session_start();
                 <?php
                 include 'connect.php';
                 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
-                $results_per_page = 4;
+                $results_per_page = 4   ;
                 $start_from = ($page-1) * $results_per_page;
                 $SQL ="SELECT * FROM tbl_sched WHERE Status = '1' ORDER BY id LIMIT $start_from, ".$results_per_page;
                 $res = mysqli_query($con, $SQL);
@@ -130,7 +130,7 @@ session_start();
 
                     <?php
                     include 'connect.php';
-                    $sql = "SELECT COUNT(id) AS total FROM tbl_sched";
+                    $sql = "SELECT COUNT(id) AS total FROM tbl_sched WHERE Status=1";
                     $res = mysqli_query($con, $sql);
                     $row= mysqli_fetch_array($res);
                     $total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
